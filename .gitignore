@@ -1,0 +1,8 @@
+# ignore PyCharm config files
+
+/.idea
+/venv
+
+# ignore draft Flask app
+
+main.py
