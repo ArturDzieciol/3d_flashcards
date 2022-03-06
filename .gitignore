@@ -6,3 +6,6 @@
 # ignore draft Flask app
 
 main.py
+
+# ignore all xlsx files
+*.xlsx

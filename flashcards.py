@@ -1,15 +1,13 @@
 from tkinter import *
 from random import randint
+import pandas as pd
+import openpyxl
 
 root = Tk()
 root.title('Chinese Language 3d flashcards')
 root.geometry('550x410')
 
-words = [
-    (('你好'), ('Hello')),
-    (('谢谢'), ('Thank you')),
-    (('再见'), ('Goodbye'))
-]
+words = pd.read_excel('chinese_words.xlsx')
 
 # get a count of our word list
 count = len(words)
@@ -28,13 +26,13 @@ def next():
     global random_word # make this variable visible across entire program
     random_word = randint(0, count-1)
     # update label with Chinese word
-    chinese_hanzi_word.config(text=words[random_word][0])
+    chinese_hanzi_word.config(text=words.iloc[random_word][0])
 
 def answer():
-    if my_entry.get().lower() == words[random_word][1].lower():
-        answer_label.config(text=f'Correct! {words[random_word][0]} is {words[random_word][1]}')
+    if my_entry.get().lower() == words.iloc[random_word][2].lower():
+        answer_label.config(text=f'Correct! {words.iloc[random_word][0]} is {words.iloc[random_word][2]}')
     else:
-        answer_label.config(text=f'Incorrect! {words[random_word][0]} is not {my_entry.get()}')
+        answer_label.config(text=f'Incorrect! {words.iloc[random_word][0]} is not {my_entry.get()}')
 
 # keep track of the hints
 hinter = ''
@@ -43,8 +41,8 @@ def hint():
     global hint_count
     global hinter
 
-    if hint_count < len(words[random_word][1]):
-        hinter = hinter + words[random_word][1][hint_count]
+    if hint_count < len(words.iloc[random_word][2]):
+        hinter = hinter + words.iloc[random_word][2][hint_count]
         hint_label.config(text=hinter)
         hint_count += 1
 
