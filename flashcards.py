@@ -5,12 +5,32 @@ import openpyxl
 
 root = Tk()
 root.title('Chinese Language 3d flashcards')
-root.geometry('550x410')
+root.geometry('550x550')
+
+choose_direction_label = Label(root, text='Choose flashcards direction:', font=('Helvetica', 10)).pack(pady=10)
+
+def hanzi_english():
+    pass
+
+def hanzi_pinyin():
+    pass
+
+choice_frame = Frame(root)
+choice_frame.pack(pady=20)
+
+hanzi_english_button = Button(choice_frame, text='汉字 to English', command=hanzi_english)
+hanzi_english_button.grid(row=0, column=0, padx=20)
+
+hanzi_pinyin_button = Button(choice_frame, text='汉字 to Pinyin', command=hanzi_pinyin)
+hanzi_pinyin_button.grid(row=0, column=1, padx=20)
+
+# load the words file
 
 words = pd.read_excel('chinese_words.xlsx')
 
 # get a count of our word list
 count = len(words)
+
 
 def next():
     global hinter, hint_count
